@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Phoebe (Yitian) Lin" />
+
+
+<title>Gender, Tertiary Education, and Economic Output</title>
+
+<script src="updated_report_files/header-attrs-2.30/header-attrs.js"></script>
+<script src="updated_report_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="updated_report_files/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="updated_report_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="updated_report_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="updated_report_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="updated_report_files/navigation-1.1/tabsets.js"></script>
+<script src="updated_report_files/navigation-1.1/codefolding.js"></script>
+<link href="updated_report_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="updated_report_files/highlightjs-9.12.0/highlight.js"></script>
+<link href="updated_report_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="updated_report_files/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Gender, Tertiary Education, and Economic
+Output</h1>
+<h3 class="subtitle">Updated replication with two-way fixed effects and
+Tableau visual analytics</h3>
+<h4 class="author">Phoebe (Yitian) Lin</h4>
+<h4 class="date">August 2024</h4>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#executive-summary" id="toc-executive-summary"><span
+class="toc-section-number">1</span> Executive summary</a></li>
+<li><a href="#research-question-and-hypotheses"
+id="toc-research-question-and-hypotheses"><span
+class="toc-section-number">2</span> Research question and
+hypotheses</a></li>
+<li><a href="#data" id="toc-data"><span
+class="toc-section-number">3</span> Data</a></li>
+<li><a href="#methods" id="toc-methods"><span
+class="toc-section-number">4</span> Methods</a>
+<ul>
+<li><a href="#why-two-way-fixed-effects"
+id="toc-why-two-way-fixed-effects"><span
+class="toc-section-number">4.1</span> Why two-way fixed
+effects?</a></li>
+<li><a href="#why-secondary-enrollmentnot-tertiary-attainment"
+id="toc-why-secondary-enrollmentnot-tertiary-attainment"><span
+class="toc-section-number">4.2</span> Why secondary enrollment，not
+tertiary attainment?</a></li>
+<li><a href="#contemporaneous-model-specification"
+id="toc-contemporaneous-model-specification"><span
+class="toc-section-number">4.3</span> Contemporaneous Model
+specification</a>
+<ul>
+<li><a href="#create-the-dummy-variable-for-median-gdpcapita"
+id="toc-create-the-dummy-variable-for-median-gdpcapita"><span
+class="toc-section-number">4.3.1</span> Create the Dummy Variable for
+Median GDP/Capita</a></li>
+<li><a
+href="#create-two-way-fixed-effects-regressions-for-female-education-and-male-education"
+id="toc-create-two-way-fixed-effects-regressions-for-female-education-and-male-education"><span
+class="toc-section-number">4.3.2</span> Create two-way fixed effects
+regressions for female education and male education</a></li>
+<li><a
+href="#regression-table-comparing-secondary-education-by-gender-with-two-way-fixed-effects"
+id="toc-regression-table-comparing-secondary-education-by-gender-with-two-way-fixed-effects"><span
+class="toc-section-number">4.3.3</span> Regression table comparing
+secondary education by gender with Two-way Fixed Effects</a></li>
+</ul></li>
+<li><a href="#lagged-delayed-payoff-specification"
+id="toc-lagged-delayed-payoff-specification"><span
+class="toc-section-number">4.4</span> Lagged (Delayed Payoff)
+Specification</a>
+<ul>
+<li><a href="#create-lagged-variables"
+id="toc-create-lagged-variables"><span
+class="toc-section-number">4.4.1</span> Create lagged variables</a></li>
+<li><a
+href="#regression-table-on-lagged-effects-of-secondary-education-by-gender-on-output-with-two-way-fixed-effects"
+id="toc-regression-table-on-lagged-effects-of-secondary-education-by-gender-on-output-with-two-way-fixed-effects"><span
+class="toc-section-number">4.4.2</span> Regression table on Lagged
+effects of secondary education by gender on output with Two-way Fixed
+Effects</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#visual-analytics-tableau-public-dashboard"
+id="toc-visual-analytics-tableau-public-dashboard"><span
+class="toc-section-number">5</span> Visual analytics: Tableau Public
+dashboard</a>
+<ul>
+<li><a href="#the-tableau-public-dashboard-combines"
+id="toc-the-tableau-public-dashboard-combines"><span
+class="toc-section-number">5.1</span> the Tableau Public dashboard
+combines:</a></li>
+</ul></li>
+<li><a href="#discussion" id="toc-discussion"><span
+class="toc-section-number">6</span> Discussion</a>
+<ul>
+<li><a
+href="#what-this-study-improves-relative-to-the-original-analysis"
+id="toc-what-this-study-improves-relative-to-the-original-analysis"><span
+class="toc-section-number">6.1</span> What This Study Improves Relative
+to the Original Analysis</a></li>
+<li><a href="#what-we-still-cannot-conclude"
+id="toc-what-we-still-cannot-conclude"><span
+class="toc-section-number">6.2</span> What We Still Cannot
+Conclude</a></li>
+<li><a href="#limitations-and-future-work"
+id="toc-limitations-and-future-work"><span
+class="toc-section-number">6.3</span> Limitations and Future
+Work</a></li>
+</ul></li>
+<li><a href="#appendix-former-research"
+id="toc-appendix-former-research"><span
+class="toc-section-number">7</span> Appendix : Former Research</a></li>
+</ul>
+</div>
+
+<div id="executive-summary" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Executive summary</h1>
+<p>This project is an updated extension of my senior-year
+<strong>Economic Development</strong> group paper(see former paper in
+the Appendix) using cross-country World Bank panel data to study how
+female higher education relates to economic output (GDP per capita). In
+the original report, we primarily relied on pooled cross-sectional
+patterns and did not fully address unobserved differences across
+countries and years. In my original contribution, I ran interaction
+models using an <strong>above-median income dummy</strong> to compare
+how the education–output relationship differs between richer and poorer
+economies.</p>
+<p>In the updated version, I strengthened the empirical design by
+introducing <strong>two-way fixed effects (country and year)</strong>
+and country-clustered standard errors, reducing bias from time-invariant
+country characteristics and global shocks. I also built an
+<strong>interactive Tableau dashboard</strong> that connects geographic
+patterns in GDP per capita with the gender gap in tertiary attainment
+(female minus male), and adds split views to compare female vs. male
+tertiary attainment against output under the same income benchmark.</p>
+<p>Because education can affect growth with a delay (human capital
+accumulation, labor-force participation, productivity), I extended the
+model to include <strong>lagged tertiary enrollment measures</strong>.
+The lagged specifications help interpret why contemporary education
+measures may appear weak or even negative in lower-income settings: the
+“payoff” may occur over a longer horizon and may be masked by short-run
+tradeoffs (e.g., schooling vs. labor supply).</p>
+<p>Together, the fixed-effects and lagged models support a more
+realistic policy interpretation: investments in female education can
+have substantial long-run potential, and the magnitude of observed gains
+depends on a country’s broader economic context.</p>
+</div>
+<div id="research-question-and-hypotheses" class="section level1"
+number="2">
+<h1><span class="header-section-number">2</span> Research question and
+hypotheses</h1>
+<p><strong>Research question.</strong> How is tertiary education
+attainment associated with GDP per capita across countries, and how does
+this relationship differ by sex (female vs. male) and by economic
+context?</p>
+<p><strong>Hypothesis 1 (female attainment).</strong> Countries with
+higher female tertiary education attainment tend to have higher GDP per
+capita.</p>
+<p><strong>Hypothesis 2 (heterogeneity by income).</strong> The strength
+of the education–output relationship is larger in above-median income
+contexts than in below-median contexts.</p>
+<p><strong>Hypothesis 3 (gender gap).</strong> Lower-income regions tend
+to display larger gender gaps in tertiary education attainment (male
+tertiary attainment higher than female), compared with higher-income
+regions.</p>
+</div>
+<div id="data" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Data</h1>
+<p>This report uses a country-year dataset built from World Bank-style
+indicators. The key fields include: <code>country</code>: country
+name</p>
+<p><code>Year</code>: calendar year</p>
+<p><code>gdpc</code>: GDP per capita</p>
+<p><code>attain_Female</code>: female tertiary attainment</p>
+<p><code>attain_Male</code>: male tertiary attainment</p>
+<p><code>enroll_secondary_female</code>female secondary education
+enrollment</p>
+<p><code>enroll_secondary_male</code>male secondary education
+enrollment</p>
+<p><code>region</code>: world region</p>
+<p><code>income_group</code>: categorical income grouping</p>
+<p>We treat blank values as missing observations.</p>
+<pre class="r"><code>#read dataset
+df &lt;- read.csv(&quot;World Bank Raw.csv&quot;)
+
+#remove junk columns and rename related columns
+df &lt;- df %&gt;%
+  select(-X, -X.1) %&gt;%      
+  mutate(
+    country = as.factor(country),
+    Year    = as.integer(Year),
+    gdpc    = as.numeric(gdpc),
+    
+    attain_Female = as.numeric(attain_Female),
+    attain_Male   = as.numeric(attain_Male),
+    
+    enroll_secondary_female = as.numeric(enroll_secondary_female),
+    enroll_secondary_male   = as.numeric(enroll_secondary_male)
+  )</code></pre>
+</div>
+<div id="methods" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Methods</h1>
+<div id="why-two-way-fixed-effects" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Why two-way fixed
+effects?</h2>
+<p>A simple cross-country regression can confuse true relationships with
+persistent differences across countries (for example, institutions,
+geography, or long-run development paths) and global time shocks (for
+example, financial crises). Two-way fixed effects help address this by
+comparing countries to themselves over time, and by netting out shared
+year-to-year shocks across all countries.</p>
+</div>
+<div id="why-secondary-enrollmentnot-tertiary-attainment"
+class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Why secondary
+enrollment，not tertiary attainment?</h2>
+<p>While the original analysis focused on tertiary educational
+attainment, subsequent fixed effects estimates revealed <strong>limited
+within-country variation at the tertiary level</strong>, particularly
+for developing economies where access remains restricted. To better
+capture gendered differences in human capital accumulation and their
+economic implications, the analysis is extended to secondary school
+enrollment. Secondary education represents an earlier and more broadly
+accessible stage of human capital formation, especially for women in
+lower-income contexts, and provides richer temporal variation for
+identifying heterogeneous growth associations. This extension allows for
+a more nuanced assessment of the potential and timing of returns to
+female education across stages of development.</p>
+</div>
+<div id="contemporaneous-model-specification" class="section level2"
+number="4.3">
+<h2><span class="header-section-number">4.3</span> Contemporaneous Model
+specification</h2>
+<p><span class="math display">\[
+GDPpc_{it} = \beta_1 SeEdu_{it} + \beta_2 AboveMedian_i
++ \beta_3 (SeEdu_{it} \times AboveMedian_i)
++ \alpha_i + \gamma_t + \varepsilon_{it}
+\]</span></p>
+<p>Where:</p>
+<p><span class="math display">\[SeEdu_{it}\]</span> is either female or
+male secondary education enrollment</p>
+<p><span class="math display">\[AboveMedian_i\]</span> is an indicator
+that equals 1 if GDP per capita is at or above the overall median</p>
+<p><span class="math display">\[\alpha_i\]</span> is the country fixed
+effect</p>
+<p><span class="math display">\[\gamma_t\]</span>is the year fixed
+effect</p>
+<div id="create-the-dummy-variable-for-median-gdpcapita"
+class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Create the Dummy
+Variable for Median GDP/Capita</h3>
+<pre class="r"><code>df &lt;- df %&gt;%
+  mutate(median_dummy = ifelse(gdpc &gt;= 11337.5, 1, 0))</code></pre>
+</div>
+<div
+id="create-two-way-fixed-effects-regressions-for-female-education-and-male-education"
+class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Create two-way
+fixed effects regressions for female education and male education</h3>
+<pre class="r"><code>library(fixest)
+#Two way fixed effects regression Female secondary enrollment
+fe_enrollF_2way &lt;- feols(
+  gdpc ~ enroll_secondary_female + median_dummy + enroll_secondary_female:median_dummy | country + Year,
+  data = df,
+  cluster = &quot;country&quot;
+)</code></pre>
+<pre><code>## NOTES: 4,077 observations removed because of NA values (LHS: 1,650, RHS: 4,077, Fixed-effects: 1,650).
+##        9/0 fixed-effect singletons were removed (9 observations).</code></pre>
+<pre class="r"><code>summary(fe_enrollF_2way)</code></pre>
+<pre><code>## OLS estimation, Dep. Var.: gdpc
+## Observations: 1,746
+## Fixed-effects: country: 162,  Year: 20
+## Standard-errors: Clustered (country) 
+##                                         Estimate Std. Error  t value Pr(&gt;|t|)
+## enroll_secondary_female                 -84.7934    37.5772 -2.25651 0.025384
+## median_dummy                         -21558.7698 10585.0776 -2.03671 0.043317
+## enroll_secondary_female:median_dummy    272.8204   123.0791  2.21663 0.028050
+##                                         
+## enroll_secondary_female              *  
+## median_dummy                         *  
+## enroll_secondary_female:median_dummy *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## RMSE: 3,945.8     Adj. R2: 0.9655  
+##                 Within R2: 0.033307</code></pre>
+<pre class="r"><code>#Two way fixed effects regression Male secondary enrollment
+m_male_enroll_2way &lt;- feols(
+  gdpc ~ enroll_secondary_male+ median_dummy + enroll_secondary_male:median_dummy | country + Year,
+  data = df,
+  cluster = &quot;country&quot;
+)</code></pre>
+<pre><code>## NOTES: 4,077 observations removed because of NA values (LHS: 1,650, RHS: 4,077, Fixed-effects: 1,650).
+##        9/0 fixed-effect singletons were removed (9 observations).</code></pre>
+<pre class="r"><code>summary(m_male_enroll_2way)</code></pre>
+<pre><code>## OLS estimation, Dep. Var.: gdpc
+## Observations: 1,746
+## Fixed-effects: country: 162,  Year: 20
+## Standard-errors: Clustered (country) 
+##                                       Estimate Std. Error  t value Pr(&gt;|t|)    
+## enroll_secondary_male                 -88.2715    37.8566 -2.33173 0.020953 *  
+## median_dummy                       -16966.2547  9589.0575 -1.76933 0.078731 .  
+## enroll_secondary_male:median_dummy    227.6920   115.4522  1.97217 0.050303 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## RMSE: 3,962.2     Adj. R2: 0.965213
+##                 Within R2: 0.025289</code></pre>
+</div>
+<div
+id="regression-table-comparing-secondary-education-by-gender-with-two-way-fixed-effects"
+class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Regression table
+comparing secondary education by gender with Two-way Fixed Effects</h3>
+<p><img src="table2.png" width="732" /></p>
+<p><strong>Table 1</strong> compares the growth effects of female and
+male secondary enrollment using two-way fixed effects.</p>
+<p>In below-median income countries, higher secondary enrollment is
+associated with <strong>short-run declines</strong> in GDP per capita
+for both females (−84.8) and males (−88.3), suggesting similar
+transitional adjustment costs in poorer economies.</p>
+<p>In contrast, the relationship becomes <strong>positive in
+higher-income countries</strong>, with a substantially <strong>larger
+effect for female education</strong>. The implied net effect of female
+secondary enrollment in above-median income countries is +188.0,
+compared to +139.4 for male enrollment, and the female interaction term
+is more precisely estimated. Overall, while secondary education exhibits
+heterogeneous growth effects by development level for both genders, the
+positive association with economic performance is stronger and more
+robust for female secondary enrollment.</p>
+<p>Because the economic effects of secondary education are likely to
+unfold with a <strong>delay</strong> and the negative associations
+observed in poorer economies may reflect <strong>temporary</strong>
+transitional adjustment costs rather than <strong>persistent
+losses</strong>, the next section introduces a lagged fixed-effects
+specification to examine whether these gender-differentiated patterns
+persist over time.</p>
+</div>
+</div>
+<div id="lagged-delayed-payoff-specification" class="section level2"
+number="4.4">
+<h2><span class="header-section-number">4.4</span> Lagged (Delayed
+Payoff) Specification</h2>
+<p>Education may influence economic output with a delay due to human
+capital accumulation, cohort transitions into the labor market, and
+productivity spillovers. To test whether the education–output
+relationship becomes clearer when allowing time for effects to
+materialize, I estimate two-way fixed effects models using lagged
+tertiary education measures.</p>
+<p>Specifically, I regress GDP per capita on lagged female or male
+secondary enrollment, an indicator for above-median income status, and
+the interaction between lagged enrollment and income group. Separate
+specifications are estimated for female and male enrollment, and for
+one-year (t−1) and three-year (t−3) lags. All models still include
+country and year fixed effects.</p>
+<div id="create-lagged-variables" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Create lagged
+variables</h3>
+<pre class="r"><code>#delayed payoff for female education
+df &lt;- df %&gt;%
+  arrange(country, Year) %&gt;%
+  group_by(country) %&gt;%
+  mutate(
+    female_enroll_lag1 = dplyr::lag(enroll_secondary_female, n = 1),
+    female_enroll_lag3 = dplyr::lag(enroll_secondary_female, n = 3),
+    male_enroll_lag1 = dplyr::lag(enroll_secondary_male, n = 1),
+    male_enroll_lag3 = dplyr::lag(enroll_secondary_male, n = 3)
+  ) %&gt;%
+  ungroup()
+
+df &lt;- df %&gt;% arrange(country, Year) %&gt;%
+  group_by(country) %&gt;%
+  mutate(
+    female_enroll_lag1 = lag(enroll_secondary_female, 1),
+    female_enroll_lag3 = lag(enroll_secondary_female, 3),
+    male_enroll_lag1 = lag(enroll_secondary_male, 1),
+    male_enroll_lag3 = lag(enroll_secondary_male, 3)
+  ) %&gt;% ungroup()
+
+library(fixest)
+m_lag1_f &lt;- feols(
+  gdpc ~ female_enroll_lag1 * median_dummy | country + Year,
+  data = df, cluster = &quot;country&quot;
+)</code></pre>
+<pre><code>## NOTES: 4,077 observations removed because of NA values (LHS: 1,650, RHS: 4,077, Fixed-effects: 1,650).
+##        9/0 fixed-effect singletons were removed (9 observations).</code></pre>
+<pre class="r"><code>summary(m_lag1_f)</code></pre>
+<pre><code>## OLS estimation, Dep. Var.: gdpc
+## Observations: 1,746
+## Fixed-effects: country: 162,  Year: 20
+## Standard-errors: Clustered (country) 
+##                                    Estimate Std. Error  t value Pr(&gt;|t|)    
+## female_enroll_lag1                 -81.1877    36.5054 -2.22399 0.027540 *  
+## median_dummy                    -17675.6275  8940.2927 -1.97707 0.049741 *  
+## female_enroll_lag1:median_dummy    225.7010   105.0683  2.14814 0.033198 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## RMSE: 3,797.2     Adj. R2: 0.968597
+##                 Within R2: 0.025537</code></pre>
+<pre class="r"><code>m_lag1_m &lt;- feols(
+  gdpc ~ male_enroll_lag1 * median_dummy | country + Year,
+  data = df, cluster = &quot;country&quot;
+)</code></pre>
+<pre><code>## NOTES: 4,077 observations removed because of NA values (LHS: 1,650, RHS: 4,077, Fixed-effects: 1,650).
+##        9/0 fixed-effect singletons were removed (9 observations).</code></pre>
+<pre class="r"><code>summary(m_lag1_m)</code></pre>
+<pre><code>## OLS estimation, Dep. Var.: gdpc
+## Observations: 1,746
+## Fixed-effects: country: 162,  Year: 20
+## Standard-errors: Clustered (country) 
+##                                  Estimate Std. Error  t value Pr(&gt;|t|)    
+## male_enroll_lag1                 -83.8395    36.9418 -2.26951 0.024565 *  
+## median_dummy                  -13987.1387  8427.6235 -1.65968 0.098926 .  
+## male_enroll_lag1:median_dummy    189.9182   103.0546  1.84289 0.067184 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## RMSE: 3,808.6     Adj. R2: 0.968409
+##                 Within R2: 0.01969</code></pre>
+<pre class="r"><code>m_lag3_f &lt;- feols(
+  gdpc ~ female_enroll_lag3 * median_dummy | country + Year,
+  data = df, cluster = &quot;country&quot;
+)</code></pre>
+<pre><code>## NOTES: 4,083 observations removed because of NA values (LHS: 1,650, RHS: 4,083, Fixed-effects: 1,650).
+##        10/0 fixed-effect singletons were removed (10 observations).</code></pre>
+<pre class="r"><code>summary(m_lag3_f)</code></pre>
+<pre><code>## OLS estimation, Dep. Var.: gdpc
+## Observations: 1,739
+## Fixed-effects: country: 161,  Year: 19
+## Standard-errors: Clustered (country) 
+##                                   Estimate Std. Error   t value Pr(&gt;|t|)    
+## female_enroll_lag3                -72.7252    36.7914 -1.976692 0.049795 *  
+## median_dummy                    -1325.4792  5660.8697 -0.234148 0.815170    
+## female_enroll_lag3:median_dummy    25.3358    72.7221  0.348392 0.728004    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## RMSE: 3,739.8     Adj. R2: 0.969801
+##                 Within R2: 0.006964</code></pre>
+<pre class="r"><code>m_lag3_m &lt;- feols(
+  gdpc ~ male_enroll_lag3 * median_dummy | country + Year,
+  data = df, cluster = &quot;country&quot;
+)</code></pre>
+<pre><code>## NOTES: 4,083 observations removed because of NA values (LHS: 1,650, RHS: 4,083, Fixed-effects: 1,650).
+##        10/0 fixed-effect singletons were removed (10 observations).</code></pre>
+<pre class="r"><code>summary(m_lag3_m)</code></pre>
+<pre><code>## OLS estimation, Dep. Var.: gdpc
+## Observations: 1,739
+## Fixed-effects: country: 161,  Year: 19
+## Standard-errors: Clustered (country) 
+##                                 Estimate Std. Error  t value Pr(&gt;|t|)    
+## male_enroll_lag3                -76.0130    35.8660 -2.11936 0.035603 *  
+## median_dummy                  -3878.7569  3531.4636 -1.09834 0.273705    
+## male_enroll_lag3:median_dummy    61.7346    46.0437  1.34078 0.181891    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## RMSE: 3,741.5     Adj. R2: 0.969773
+##                 Within R2: 0.006061</code></pre>
+</div>
+<div
+id="regression-table-on-lagged-effects-of-secondary-education-by-gender-on-output-with-two-way-fixed-effects"
+class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Regression table on
+Lagged effects of secondary education by gender on output with Two-way
+Fixed Effects</h3>
+<p><img src="table3.png" /></p>
+<p><strong>Table 2</strong> presents two-way fixed-effects estimates of
+the lagged effects of female and male secondary enrollment on GDP per
+capita. For both genders, lagged enrollment remains negatively
+associated with economic output in below-median income countries;
+however, the <strong>magnitude of these negative coefficients is
+smaller</strong> than in the contemporaneous specifications and declines
+further when moving from one-year to three-year lags. This attenuation
+is consistent with the interpretation that the adverse effects observed
+in poorer economies primarily reflect <strong>short-run transitional
+adjustment costs</strong> —such as delayed labor force entry or
+institutional constraints—rather than persistent reductions in economic
+performance.</p>
+<p>In higher-income countries, the interaction between lagged female
+enrollment and above-median income remains positive and statistically
+significant at the one-year horizon, indicating that <strong>delayed
+growth returns</strong> to female education emerge as adjustment costs
+dissipate. By contrast, the corresponding effects for male enrollment
+are <strong>weaker and less precisely estimated</strong>, reinforcing
+the conclusion that the delayed economic payoff from secondary education
+is both more pronounced and more robust for females.</p>
+</div>
+</div>
+</div>
+<div id="visual-analytics-tableau-public-dashboard"
+class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Visual analytics:
+Tableau Public dashboard</h1>
+<p>While the fixed-effects regressions provide evidence of heterogeneous
+and delayed returns to secondary education across income levels and
+gender, they necessarily summarize these dynamics through average
+coefficients.</p>
+<p>To complement the econometric results and make the underlying
+cross-country patterns more transparent, the next section introduces an
+interactive Tableau dashboard. The dashboard visualizes geographic
+variation in GDP per capita, female and male tertiary attainment, and
+the gender gap in higher education across time, allowing for a more
+<strong>intuitive comparison of educational outcomes and economic
+performance</strong>.</p>
+<p>By enabling users to explore <strong>temporal changes and
+regional</strong> heterogeneity directly, the visualization helps bridge
+the gap between the regression evidence and the broader structural
+patterns driving the observed delayed and gender-specific returns to
+education.</p>
+<div id="the-tableau-public-dashboard-combines" class="section level2"
+number="5.1">
+<h2><span class="header-section-number">5.1</span> the Tableau Public
+dashboard combines:</h2>
+<p>-a GDP per capita country map</p>
+<p>-a tertiary gender-gap map (female minus male)</p>
+<p>-female tertiary vs GDP scatter plot</p>
+<p>-male tertiary vs GDP scatter plot</p>
+<p>-a time-bin filter to compare patterns across periods</p>
+<p><a
+href="https://public.tableau.com/views/Book1_17638655233050/Dashboard2"><img
+src="tableau_screenshot.png"
+alt="Click to view interactive dashboard" /></a> <strong>Click image to
+view interactive dashboard</strong></p>
+<p>The GDP-per-capita map shows a clear global income gradient, with
+higher GDP per capita concentrated in North America, Western Europe, and
+parts of Oceania, while many countries in Sub-Saharan Africa and South
+Asia appear in lower GDP per capita ranges.</p>
+<p>The tertiary gender-gap map (female minus male) suggests that the
+gender gap is not randomly distributed: several <strong>lower-income
+regions show larger negative gaps</strong>, indicating that men are more
+likely to reach tertiary education than women. In contrast,
+higher-income regions tend to have smaller gaps or even positive gaps in
+some countries.</p>
+<p>The scatter plots reinforce a visible heterogeneity pattern: among
+above-median countries, higher female or male tertiary attainment levels
+align more clearly with higher GDP per capita levels. Among below-median
+countries, the relationship appears weaker and more compressed near the
+origin, which is consistent with the idea that other constraints
+(institutional capacity, labor market structure, or time-to-return
+dynamics) may moderate the short-run relationship between education and
+output.</p>
+</div>
+</div>
+<div id="discussion" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Discussion</h1>
+<div id="what-this-study-improves-relative-to-the-original-analysis"
+class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> What This Study
+Improves Relative to the Original Analysis</h2>
+<p>This study improves upon the original analysis by strengthening both
+the empirical framework and the interpretation of the education–output
+relationship. While the initial paper documented positive correlations
+between tertiary education and GDP per capita in simple OLS models, it
+was unable to draw clear conclusions once income and regional controls
+were introduced, leaving the role of female education inconclusive. The
+current analysis addresses this limitation by employing <strong>two-way
+fixed-effects models</strong> that control for time-invariant country
+characteristics and common global shocks, allowing identification to
+rely on within-country variation over time.</p>
+<p>More importantly, this study explicitly models heterogeneity and
+timing. By interacting education with income status and introducing
+lagged specifications, the analysis <strong>separates short-run
+adjustment costs from delayed economic returns</strong>—an issue the
+original paper could not address. The attenuation of negative
+coefficients in lagged models provides a coherent explanation for why
+contemporaneous estimates in poorer countries appear negative, reframing
+them as transitional effects rather than evidence against educational
+investment.</p>
+<p>Finally, the systematic comparison of female and male education
+across income groups and time horizons reveals a <strong>consistent
+pattern</strong>: female tertiary education exhibits stronger and more
+robust medium-term growth associations in higher-income settings,
+sharpening both the empirical contribution and policy relevance of the
+original work.</p>
+</div>
+<div id="what-we-still-cannot-conclude" class="section level2"
+number="6.2">
+<h2><span class="header-section-number">6.2</span> What We Still Cannot
+Conclude</h2>
+<p>Despite these improvements, the analysis remains unable to establish
+<strong>definitive causality between education and economic
+growth</strong>. Although two-way fixed effects substantially reduce
+bias from unobserved heterogeneity, education investment may still be
+endogenous to economic conditions, policy choices, or institutional
+changes. Reverse causality—where higher income enables greater
+educational attainment—cannot be fully ruled out, nor can omitted
+variables such as education quality, labor market structure, or
+gender-specific labor force participation.</p>
+<p>Moreover, the refined interpretation of negative short-run
+coefficients as adjustment costs does not imply that the timing or
+magnitude of these costs is precisely identified. The estimates describe
+average associations rather than policy-ready effect sizes, and the
+analysis cannot isolate the specific mechanisms—such as productivity,
+demographic change, or spillovers—through which female education
+influences output.</p>
+</div>
+<div id="limitations-and-future-work" class="section level2"
+number="6.3">
+<h2><span class="header-section-number">6.3</span> Limitations and
+Future Work</h2>
+<p>Several limitations point to directions for future research. First,
+tertiary education data—especially for <strong>female attainment—remain
+sparse</strong> for many low-income countries and earlier periods,
+limiting both statistical precision and the interpretability of
+geographic visualizations. Future work could address this by aggregating
+over longer horizons, incorporating alternative education measures, or
+integrating regional and micro-level data sources.</p>
+<p>Second, while lagged specifications provide suggestive evidence of
+delayed returns, they remain a reduced-form approach. A natural
+extension would be to implement an <strong>instrumental-variables (2SLS)
+strategy</strong> using plausibly exogenous shocks to female
+education—such as compulsory schooling reforms or gender-targeted access
+policies—to better isolate causal effects, particularly in developing
+economies.</p>
+<p>Finally, future research could examine heterogeneity beyond income
+levels, including regional variation, institutional quality, and
+gender-specific labor market outcomes. Combining causal identification
+strategies with richer visual analytics—such as dynamic dashboards
+tracking education–growth trajectories over time—would further
+strengthen both empirical insight and policy communication.</p>
+</div>
+</div>
+<div id="appendix-former-research" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Appendix : Former
+Research</h1>
+<iframe src="Project1.pdf" width="100%" height="800">
+</iframe>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
